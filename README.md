@@ -13,6 +13,7 @@ const queryLib = require('lc-query-string');
 // if it dose not exist, it will return empty object.
 queryLib.parse();
 
+// should be {page: '1', pageSize: '10'}
 queryLib.parse('?page=1&pageSize=10');
 
 ```

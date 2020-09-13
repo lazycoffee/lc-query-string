@@ -1,3 +1,6 @@
+interface QueryObject {
+    [key: string]: string | Array<string>;
+}
 const lib = {
     parse(str?: string) {
         if (str === undefined) {
@@ -39,6 +42,41 @@ const lib = {
         });
         return queryObj;
     },
+    stringVal(v: any): string {
+        const type = Object.prototype.toString
+            .call(v)
+            .match(/\[object (\w+)\]/)[1]
+            .toLowerCase();
+        if (['undefined', 'null'].includes(type)) {
+            return '';
+        }
+        if (Number.isNaN(v)) {
+            return '';
+        }
+        if (['object', 'array'].includes(type)) {
+            return JSON.stringify(type);
+        }
+        return v + '';
+    },
+    stringify(queryObj?: QueryObject) {
+        if (!queryObj) {
+            return '';
+        }
+        let segments: Array<string> = [];
+        Object.keys(queryObj).forEach((key) => {
+            let val = queryObj[key];
+            if (Array.isArray(val)) {
+                val.forEach((v) => {
+                    v = lib.stringVal(v);
+                    segments.push(`${key}[]=${v + ''}`);
+                });
+            } else {
+                val = lib.stringVal(val);
+                segments.push(`${key}=${val}`);
+            }
+        });
+        return segments.join('&');
+    },
 };
 
-module.exports =  lib;
+module.exports = lib;
