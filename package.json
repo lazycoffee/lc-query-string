@@ -1,0 +1,19 @@
+{
+    "name": "lc-query-string",
+    "version": "0.0.1",
+    "description": "Url query parse and compose",
+    "main": "index.js",
+    "scripts": {
+        "dev": "tsc -w",
+        "build": "tsc",
+        "test": "node test.js"
+    },
+    "repository": "git@github.com:lazycoffee/lc-query-string.git",
+    "author": "JamesYin <elantion@sina.com>",
+    "license": "MIT",
+    "dependencies": {},
+    "devDependencies": {
+        "typescript": "^4.0.2",
+        "@types/node": "^14.10.1"
+    }
+}
