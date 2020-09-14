@@ -3,6 +3,7 @@
         "module": "UMD",
         "target": "ES6",
         "noImplicitAny": true,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "declaration": true
     }
 }
